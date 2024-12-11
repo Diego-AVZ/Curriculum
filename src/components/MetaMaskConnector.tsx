@@ -1,24 +1,20 @@
-// src/components/MetaMaskConnector.tsx
-//import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Web3 from "web3";
 import Button from '../components/Button';
 
-// Función para conectar MetaMask
 async function connectMetaMask(setAccount: React.Dispatch<React.SetStateAction<string | null>>) {
-  if (window.ethereum) {
-    const web3 = new Web3(window.ethereum);
-
+  if ((window as any).ethereum) {  
+    const web3 = new Web3((window as any).ethereum);
     try {
-      await window.ethereum.request({ method: "eth_requestAccounts" }); // Solicitar acceso a las cuentas
-
+      await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
       const accounts = await web3.eth.getAccounts();
-      setAccount(accounts[0]); // Establecer la cuenta conectada
-
+      setAccount(accounts[0] || null);
     } catch (error) {
-      console.error("Error de conexión a MetaMask", error);
+      console.error('User denied account access', error);
     }
   } else {
-    console.error("MetaMask no está instalado");
+    console.error('MetaMask is not installed');
   }
 }
 
@@ -28,7 +24,7 @@ interface MetaMaskConnectorProps {
 
 const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({ setAccount }) => {
   const handleConnect = () => {
-    connectMetaMask(setAccount); // Llamar a la función de conexión de MetaMask
+    connectMetaMask(setAccount);
   };
 
   return (
