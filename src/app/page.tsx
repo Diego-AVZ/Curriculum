@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import Button from '../components/Button';
+//import Button from '../components/Button';
 import Rectangle from "@/components/Rectangle";
 import Circle from "@/components/Circle";
 import React, { useState } from "react";
@@ -11,6 +11,7 @@ import Item from "@/components/MenuItem";
 
 export default function Home() {
   const [account, setAccount] = useState<string | null>(null);
+  console.log(account);
   return (
     <main>
       <div style={{height:"100vh", backgroundColor:"black", position:"relative"}}>
