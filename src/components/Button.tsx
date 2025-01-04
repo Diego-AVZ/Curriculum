@@ -1,19 +1,19 @@
 // Button.tsx
 
 import React from "react";
-import styles from "./Button.module.css"; // Importa el archivo CSS
+import styles from "./Button.module.css"; 
 
 interface ButtonProps {
   children: React.ReactNode;
-  style?: React.CSSProperties; // Permite que puedas pasar estilos en línea
-  onClick?: () => void; // Asegúrate de añadir la función onClick si la usas
+  style?: React.CSSProperties; 
+  onClick?: () => void; 
 }
 
 const Button: React.FC<ButtonProps> = ({ children, style, onClick }) => {
   return (
     <button
-      style={style} // Estilo en línea
-      className={styles.button} // Aplica la clase CSS desde Button.module.css
+      style={style} 
+      className={styles.button}
       onClick={onClick}
     >
       {children}
